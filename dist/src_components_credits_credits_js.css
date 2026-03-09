@@ -1,0 +1,55 @@
+/*!**********************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/components/credits/credits.scss ***!
+  \**********************************************************************************************************************************************************/
+.section .item.credits #wrapper {
+  display: flex;
+  gap: 16px;
+  padding: 4px 0;
+}
+.section .item.credits #wrapper .column {
+  flex: 1;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--mason-border);
+}
+.section .item.credits #wrapper .column .course-header {
+  padding: 10px;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  background-color: var(--mason-accent);
+  color: #fff;
+  border-bottom: 1px solid var(--mason-border);
+}
+.section .item.credits #wrapper .column .course {
+  background-color: var(--mason-card-header);
+  margin: 8px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  transition: background-color 0.15s ease;
+}
+.section .item.credits #wrapper .column .course:hover {
+  background-color: var(--mason-card-bg);
+}
+.section .item.credits #wrapper .column .course .course-details {
+  flex: 1;
+  color: var(--mason-text-primary);
+}
+.section .item.credits #wrapper .column .course .credits {
+  font-weight: 600;
+  color: var(--mason-accent);
+  background: var(--mason-card-bg);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+}
+@media (max-width: 1180px) {
+  .section .item.credits #wrapper {
+    flex-direction: column;
+  }
+}
+
+/*# sourceMappingURL=src_components_credits_credits_js.css.map?13017b03e50fb4c4ed09*/

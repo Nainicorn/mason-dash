@@ -1,0 +1,124 @@
+/*!**********************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/components/courses/courses.scss ***!
+  \**********************************************************************************************************************************************************/
+.section .item.courses .week {
+  display: flex;
+  flex-direction: row;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--mason-border);
+}
+.section .item.courses .week .time .time-title {
+  background: var(--mason-accent);
+  color: #fff;
+  padding: 8px;
+  font-weight: 600;
+  text-align: center;
+  font-size: 0.7rem;
+}
+.section .item.courses .week .time .time-event {
+  display: flex;
+  height: 40px;
+  width: 90px;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--mason-card-header);
+  border-top: 1px solid var(--mason-border);
+  font-size: 0.7rem;
+  color: var(--mason-text-secondary);
+  font-weight: 500;
+}
+.section .item.courses .week .day {
+  border-right: 1px solid var(--mason-border);
+  flex: 1;
+  position: relative;
+  /* horizontal gridlines */
+}
+.section .item.courses .week .day .day-title {
+  background: var(--mason-accent);
+  color: #fff;
+  padding: 8px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+.section .item.courses .week .day .day-events {
+  position: relative;
+}
+.section .item.courses .week .day .day-events .day-event {
+  background-color: var(--mason-course-violet);
+  position: absolute;
+  padding: 4px 6px;
+  left: 0;
+  width: 100%;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #fff;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: filter 0.15s ease;
+  z-index: 2;
+}
+.section .item.courses .week .day .day-events .day-event:hover {
+  filter: brightness(1.15);
+}
+.section .item.courses .week .day .day-events .day-event:hover:before {
+  content: attr(start);
+  position: absolute;
+  top: -14px;
+  right: 2px;
+  font-size: 0.55rem;
+  font-weight: 400;
+  color: var(--mason-text-secondary);
+}
+.section .item.courses .week .day .day-events .day-event:hover:after {
+  content: attr(end);
+  position: absolute;
+  bottom: -14px;
+  right: 2px;
+  font-size: 0.55rem;
+  font-weight: 400;
+  color: var(--mason-text-secondary);
+}
+.section .item.courses .week .day .day-events .day-event.CS321-002 {
+  background-color: var(--mason-course-sky);
+}
+.section .item.courses .week .day .day-events .day-event.CS330-005 {
+  background-color: var(--mason-course-violet);
+}
+.section .item.courses .week .day .day-events .day-event.CS330-001 {
+  background-color: var(--mason-course-teal);
+}
+.section .item.courses .week .day .day-events .day-event.CS262-003 {
+  background-color: var(--mason-course-indigo);
+}
+.section .item.courses .week .day .day-events .day-event.CS306-001 {
+  background-color: var(--mason-course-pink);
+}
+.section .item.courses .week .day .day-events .day-event.CS367-004 {
+  background-color: var(--mason-course-rose);
+}
+.section .item.courses .week .day .day-events .day-event.CS471-001 {
+  background-color: var(--mason-course-amber);
+}
+.section .item.courses .week .day .day-events .day-event.CS367-003 {
+  background-color: var(--mason-course-orange);
+}
+.section .item.courses .week .day .day-events .day-event.CS483-002 {
+  background-color: var(--mason-course-cyan);
+}
+.section .item.courses .week .day .day-events .day-event.CS367-001 {
+  background-color: var(--mason-course-emerald);
+}
+.section .item.courses .week .day::before {
+  content: "";
+  position: absolute;
+  top: -9px;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background-image: repeating-linear-gradient(to bottom, transparent, transparent 39px, var(--mason-border) 39px, var(--mason-border) 40px);
+  pointer-events: none;
+}
+
+/*# sourceMappingURL=src_components_courses_courses_js.css.map?592ecf3e2ef505ed04bb*/

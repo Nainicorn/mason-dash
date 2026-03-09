@@ -1,0 +1,37 @@
+/*!****************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[3].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/components/info/info.scss ***!
+  \****************************************************************************************************************************************************/
+.section .item.info .pills {
+  padding: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.section .item.info .pills .pill {
+  display: flex;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 4px var(--mason-shadow);
+}
+.section .item.info .pills .pill .pill-title {
+  padding: 8px 14px;
+  min-width: 80px;
+  text-align: right;
+  background-color: var(--mason-accent);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+.section .item.info .pills .pill .pill-text {
+  padding: 8px 14px;
+  background-color: var(--mason-card-header);
+  color: var(--mason-text-primary);
+  font-size: 0.8rem;
+}
+@media (max-width: 1180px) {
+  .section .item.info .pills {
+    flex-direction: column;
+  }
+}
+
+/*# sourceMappingURL=src_components_info_info_js.css.map?540993375f5f61112607*/
