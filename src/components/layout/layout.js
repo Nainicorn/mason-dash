@@ -1,23 +1,23 @@
-// layout.js file that handles dashboard layout functionality
-// import html from layout.hbs to display custom data in using innerHTML
 import template from "./layout.hbs";
-// import layout scss file to style and display the layout on the dashboard
 import "./layout.scss";
+
+const THEME_LABELS = {
+    default: 'Mason',
+    light: 'Light',
+    night: 'Night',
+    sea: 'Ocean',
+    evil: 'Dark',
+};
 
 const layout = {
     theme: 'default',
-    // initialization function for the layout object
-    init() {
 
+    init() {
         this._getTheme();
-        // call layout method that renders layout component
         this._renderLayout();
-        // call layout method that binds event listeners
         this._bindListeners();
-        //default open courses
-        let coursesItem = this.element.querySelector(
-            ".item.courses .item-title"
-        );
+        // default open courses
+        let coursesItem = this.element.querySelector(".item.courses .item-title");
         coursesItem.click();
     },
 
@@ -27,70 +27,88 @@ const layout = {
     },
 
     _setTheme(theme) {
+        this.theme = theme;
         document.body.dataset.theme = theme;
         localStorage.setItem("mason-theme", theme);
+        this._updateThemeLabel();
     },
 
-    // private method to render the layout component on the page
+    _updateThemeLabel() {
+        let label = this.element.querySelector(".theme-label");
+        if (label) {
+            label.textContent = THEME_LABELS[this.theme] || 'Mason';
+        }
+        // mark active option
+        let options = this.element.querySelectorAll(".theme-option");
+        options.forEach((opt) => {
+            opt.classList.toggle("active", opt.dataset.theme === this.theme);
+        });
+    },
+
     _renderLayout() {
-        // store body element to render the layout
         this.element = document.querySelector("body");
-        // set the inner HTML of the body element to the Handlebars template
         this.element.innerHTML = template();
-        // select theme dropdown element with the class 'select-theme' in the layout
-        this.themeControl = this.element.querySelector("select.select-theme");
-
-        this.themeControl.value = this.theme;
+        this._updateThemeLabel();
     },
 
-    // private method to bind event listeners for the layout
     _bindListeners() {
-        // delegate click event listener to each header link
+        // logout
         let header = document.querySelector(".header");
         header.addEventListener("click", (e) => {
             let target = e.target;
             if (target.classList.contains("header-link")) {
                 let strAction = target.dataset.action;
-                // check if the action is exit
                 if (strAction === "exit") {
-                    // remove the mason-user from local storage
                     localStorage.removeItem("mason-user");
-                    // redirect to the login.html page after user exits
                     top.location = "login.html";
                 }
             }
         });
 
-        // delegate click event listener to each section title
+        // custom theme dropdown
+        let dropdown = this.element.querySelector(".theme-dropdown");
+        let toggle = dropdown.querySelector(".theme-dropdown-toggle");
+        let menu = dropdown.querySelector(".theme-dropdown-menu");
+
+        toggle.addEventListener("click", (e) => {
+            e.stopPropagation();
+            dropdown.classList.toggle("open");
+        });
+
+        menu.addEventListener("click", (e) => {
+            let option = e.target.closest(".theme-option");
+            if (option) {
+                let theme = option.dataset.theme;
+                this._setTheme(theme);
+                dropdown.classList.remove("open");
+            }
+        });
+
+        // close dropdown when clicking outside
+        document.addEventListener("click", () => {
+            dropdown.classList.remove("open");
+        });
+
+        // accordion section click
         let section = document.querySelector(".section");
         section.addEventListener("click", async (e) => {
             let target = e.target;
 
             if (target.classList.contains("item-title")) {
                 let item = target.closest(".item");
-                // close all items
                 this._closeAllItems(item);
 
                 let strType = item.getAttribute("data-type");
                 let strState = item.getAttribute("data-state") || "";
                 if (strState === "close" || strState === "") {
                     item.dataset.state = "open";
-                    // dynamically import requested module
-                    let importModule = await import(
-                        `components/${strType}/${strType}.js`
-                    );
+                    let importModule = await import(`components/${strType}/${strType}.js`);
                     let module = importModule.default;
                     module.init();
                 } else {
                     item.dataset.state = "close";
                 }
             }
-        });
-
-        this.themeControl.addEventListener("change", (e) => {
-            let selectedIndex = this.themeControl.selectedIndex;
-            let theme = this.themeControl.options[selectedIndex].value;
-            this._setTheme(theme);
         });
     },
 
@@ -103,5 +121,4 @@ const layout = {
     },
 };
 
-// export the layout object to make it available for other modules
 export default layout;

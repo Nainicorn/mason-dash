@@ -4,28 +4,6 @@
   box-sizing: border-box;
 }
 
-:root {
-  --mason-section-background1: #484848;
-  --mason-section-background2: #282828;
-  --mason-section-background3: #707070;
-  --mason-section-accent1: #008000;
-  --mason-section-accent2: #005000;
-  --mason-section-accent3: #003000;
-  --mason-section-head-text: #ffffff;
-
-  --mason-course-light-blue: #6495ed;
-  --mason-course-dark-blue: #008b8b;
-  --mason-course-light-purple: #9370db;
-  --mason-course-dark-purple: #663399;
-  --mason-course-light-orange: #f4a460;
-  --mason-course-dark-orange: #df8900;
-  --mason-course-dark-pink: #db7093;
-  --mason-course-light-pink: #ffb6c1;
-  --mason-course-light-teal: #5f9ea0;
-  --mason-course-light-salmon: #bc8f8f;
-  --mason-exit-filter-invert: invert(1);
-}
-
 html,
 body {
   overflow: hidden;
@@ -33,75 +11,219 @@ body {
   width: 100%;
   display: flex;
   flex-direction: column;
-  font-family: Cambria, serif;
-  font-size: 1.2rem;
-  background: var(--mason-section-background2);
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-size: 1rem;
+  background: var(--mason-bg);
+  color: var(--mason-text-primary);
 }
 
-body {
-  &[data-theme="default"] {
-    --mason-section-background1: #484848;
-    --mason-section-background2: #282828;
-    --mason-section-background3: #707070;
-    --mason-section-accent1: #008000;
-    --mason-section-accent2: #005000;
-    --mason-section-accent3: #003000;
-    --mason-section-head-text: #ffffff;
-    .header {
-        .header-link {
-            filter: var(--mason-exit-filter-invert);
+/* ======================================================
+   THEME SYSTEM
+   GMU Official: Green #006633, Gold #FFCC33
+   ====================================================== */
+
+/* Course colors - beautiful, accessible palette */
+:root {
+  --mason-course-emerald: #10b981;
+  --mason-course-sky: #3b82f6;
+  --mason-course-violet: #8b5cf6;
+  --mason-course-rose: #f43f5e;
+  --mason-course-amber: #f59e0b;
+  --mason-course-teal: #14b8a6;
+  --mason-course-indigo: #6366f1;
+  --mason-course-pink: #ec4899;
+  --mason-course-orange: #f97316;
+  --mason-course-cyan: #06b6d4;
+}
+
+/* ===== MASON (Default) - Green & Gold ===== */
+body,
+body[data-theme="default"] {
+  --mason-bg: #1a2332;
+  --mason-header-bg: #0d1821;
+  --mason-card-bg: #1e2d3d;
+  --mason-card-header: #243447;
+  --mason-border: #2d4056;
+  --mason-shadow: rgba(0, 0, 0, 0.3);
+  --mason-accent: #006633;
+  --mason-accent-light: #00894a;
+  --mason-accent-gold: #FFCC33;
+  --mason-text-primary: #e8edf2;
+  --mason-text-secondary: #8899aa;
+  --mason-icon-filter: invert(1);
+
+  /* Legacy variable mapping for existing component styles */
+  --mason-section-background1: #243447;
+  --mason-section-background2: #1a2332;
+  --mason-section-background3: #1e2d3d;
+  --mason-section-accent1: #006633;
+  --mason-section-accent2: #004d26;
+  --mason-section-accent3: #003319;
+  --mason-section-head-text: #e8edf2;
+}
+
+/* ===== LIGHT - Clean & Bright ===== */
+body[data-theme="light"] {
+  --mason-bg: #f0f2f5;
+  --mason-header-bg: #ffffff;
+  --mason-card-bg: #ffffff;
+  --mason-card-header: #f8f9fa;
+  --mason-border: #e1e5ea;
+  --mason-shadow: rgba(0, 0, 0, 0.06);
+  --mason-accent: #006633;
+  --mason-accent-light: #00894a;
+  --mason-accent-gold: #e6b800;
+  --mason-text-primary: #1a2332;
+  --mason-text-secondary: #5a6b7d;
+  --mason-icon-filter: none;
+
+  --mason-section-background1: #f8f9fa;
+  --mason-section-background2: #f0f2f5;
+  --mason-section-background3: #ffffff;
+  --mason-section-accent1: #006633;
+  --mason-section-accent2: #004d26;
+  --mason-section-accent3: #003319;
+  --mason-section-head-text: #1a2332;
+}
+
+/* ===== NIGHT - Deep Purple & Blue ===== */
+body[data-theme="night"] {
+  --mason-bg: #13111c;
+  --mason-header-bg: #0c0a14;
+  --mason-card-bg: #1a1726;
+  --mason-card-header: #211e30;
+  --mason-border: #2e2a42;
+  --mason-shadow: rgba(0, 0, 0, 0.4);
+  --mason-accent: #7c3aed;
+  --mason-accent-light: #a855f7;
+  --mason-accent-gold: #c084fc;
+  --mason-text-primary: #e2dff0;
+  --mason-text-secondary: #8b85a8;
+  --mason-icon-filter: invert(1);
+
+  --mason-section-background1: #211e30;
+  --mason-section-background2: #13111c;
+  --mason-section-background3: #1a1726;
+  --mason-section-accent1: #7c3aed;
+  --mason-section-accent2: #5b21b6;
+  --mason-section-accent3: #3b0d8a;
+  --mason-section-head-text: #e2dff0;
+}
+
+/* ===== OCEAN - Deep Sea Blues ===== */
+body[data-theme="sea"] {
+  --mason-bg: #0c1929;
+  --mason-header-bg: #071220;
+  --mason-card-bg: #112240;
+  --mason-card-header: #162b50;
+  --mason-border: #1d3660;
+  --mason-shadow: rgba(0, 0, 0, 0.4);
+  --mason-accent: #0ea5e9;
+  --mason-accent-light: #38bdf8;
+  --mason-accent-gold: #67e8f9;
+  --mason-text-primary: #ccd6f6;
+  --mason-text-secondary: #6b83a8;
+  --mason-icon-filter: invert(1);
+
+  --mason-section-background1: #162b50;
+  --mason-section-background2: #0c1929;
+  --mason-section-background3: #112240;
+  --mason-section-accent1: #0ea5e9;
+  --mason-section-accent2: #0284c7;
+  --mason-section-accent3: #0369a1;
+  --mason-section-head-text: #ccd6f6;
+}
+
+/* ===== DARK - Minimal Charcoal ===== */
+body[data-theme="evil"] {
+  --mason-bg: #111111;
+  --mason-header-bg: #0a0a0a;
+  --mason-card-bg: #1a1a1a;
+  --mason-card-header: #222222;
+  --mason-border: #333333;
+  --mason-shadow: rgba(0, 0, 0, 0.5);
+  --mason-accent: #ef4444;
+  --mason-accent-light: #f87171;
+  --mason-accent-gold: #fca5a5;
+  --mason-text-primary: #e5e5e5;
+  --mason-text-secondary: #737373;
+  --mason-icon-filter: invert(1);
+
+  --mason-section-background1: #222222;
+  --mason-section-background2: #111111;
+  --mason-section-background3: #1a1a1a;
+  --mason-section-accent1: #ef4444;
+  --mason-section-accent2: #b91c1c;
+  --mason-section-accent3: #7f1d1d;
+  --mason-section-head-text: #e5e5e5;
+}
+
+/* ===== SHARED DIALOG STYLES ===== */
+dialog {
+  margin: auto;
+  width: 380px;
+  border: none;
+  border-radius: 12px;
+  background: var(--mason-card-bg);
+  color: var(--mason-text-primary);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  padding: 0;
+
+  .dialog-main {
+    display: flex;
+    flex-direction: column;
+
+    .dialog-header {
+      padding: 14px 20px;
+      background: var(--mason-accent);
+      color: #fff;
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: 12px 12px 0 0;
+    }
+
+    .dialog-body {
+      padding: 20px;
+      font-size: 0.85rem;
+      line-height: 1.8;
+
+      div {
+        padding: 4px 0;
+        border-bottom: 1px solid var(--mason-border);
+
+        &:last-child {
+          border-bottom: none;
         }
+      }
+    }
+
+    .dialog-footer {
+      padding: 12px 20px;
+      display: flex;
+      justify-content: flex-end;
+      border-top: 1px solid var(--mason-border);
+
+      button {
+        padding: 6px 20px;
+        border-radius: 8px;
+        border: 1px solid var(--mason-border);
+        background: var(--mason-card-header);
+        color: var(--mason-text-primary);
+        font-family: inherit;
+        cursor: pointer;
+        transition: all 0.2s ease;
+
+        &:hover {
+          background: var(--mason-accent);
+          color: #fff;
+          border-color: var(--mason-accent);
+        }
+      }
     }
   }
-  &[data-theme="light"] {
-    --mason-section-background1: #9d9c9c;
-    --mason-section-background2: #bbbaba;
-    --mason-section-background3: #e9e9e9;
-    --mason-section-accent1: #008000;
-    --mason-section-accent2: #005000;
-    --mason-section-accent3: #003000;
-    --mason-section-head-text: #000;
-  }
-  &[data-theme="night"] {
-    --mason-section-background1: #404076;
-    --mason-section-background2: #23234f;
-    --mason-section-background3: #696981;
-    --mason-section-accent1: #1a008b;
-    --mason-section-accent2: #004450;
-    --mason-section-accent3: #140033;
-    --mason-section-head-text: #ffffff;
-    .header {
-        .header-link {
-            filter: var(--mason-exit-filter-invert);
-        }
-    }
-  }
-  &[data-theme="sea"] {
-    --mason-section-background1: #dab200;
-    --mason-section-background2: #00bcb3;
-    --mason-section-background3: #fde8a2;
-    --mason-section-accent1: #008060;
-    --mason-section-accent2: #005383;
-    --mason-section-accent3: #003000;
-    --mason-section-head-text: #000000;
-    .header {
-        .header-link {
-            filter: var(--mason-exit-filter-invert);
-        }
-    }
-  }
-  &[data-theme="evil"] {
-    --mason-section-background1: #312727;
-    --mason-section-background2: #000000;
-    --mason-section-background3: #755a5a;
-    --mason-section-accent1: #800000;
-    --mason-section-accent2: #500000;
-    --mason-section-accent3: #300000;
-    --mason-section-head-text: #ffffff;
-    .header {
-        .header-link {
-            filter: var(--mason-exit-filter-invert);
-        }
-    }
+
+  &::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
   }
 }

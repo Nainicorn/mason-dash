@@ -1,8 +1,5 @@
-// import html from user.html to display custom data in using innerHTML
 import template from "./map.hbs";
-// import user scss file to style and display the username on the dashboard
 import "./map.scss";
-
 import { buildingsData } from "./buildings";
 
 let buildingsLoaded = false;
@@ -10,69 +7,60 @@ let buildingsLoaded = false;
 const map = {
     init() {
         this.element = document.querySelector(".item.map");
-
         this._renderLayout();
         this._loadBuildings();
         this._bindListeners();
     },
 
     _renderLayout() {
-        // generate the HTML using the Handlebars template with main as true
-        let mainHtml = template({
-            main: true,
-        });
-
-        // set the inner HTML of the selected element to the generated HTML
+        let mainHtml = template({ main: true });
         this.element.querySelector(".item-body").innerHTML = mainHtml;
         this.mapImage = this.element.querySelector(".map-image img");
         this.mapView = this.element.querySelector(".map-view img");
-        this.mapHighlight = this.element.querySelector(".map-image .map-highlight")
+        this.mapViewContainer = this.element.querySelector(".map-view");
+        // set default view
+        this._resetMap();
     },
 
     _loadBuildings() {
-        if (buildingsLoaded) {
-            return;
-        }
+        if (buildingsLoaded) return;
 
         let selectControl = this.element.querySelector(".item-controls select");
-        selectControl.insertAdjacentHTML(
-            "beforeend",
-            `<option value=''>View Building</option>`
-        );
+        selectControl.insertAdjacentHTML("beforeend", `<option value=''>View Building</option>`);
         buildingsData.forEach((building) => {
-            let buildingId = building.id;
-            let name = building.name;
             selectControl.insertAdjacentHTML(
                 "beforeend",
-                `<option value='${buildingId}'>${name}</option>`
+                `<option value='${building.id}'>${building.name}</option>`
             );
         });
         buildingsLoaded = true;
     },
 
+    _resetMap() {
+        this.mapImage.style.transform = 'translate(-80px, -290px) scale(0.9)';
+        this.mapView.setAttribute('src', '');
+        this.mapViewContainer.classList.remove('has-image');
+    },
+
     _bindListeners() {
         let selectControl = this.element.querySelector(".item-controls select");
 
-        selectControl.addEventListener("change", (e) => {
-            let selectedIndex = selectControl.selectedIndex;
-            let buildingId = selectControl.options[selectedIndex].value;
+        selectControl.addEventListener("change", () => {
+            let buildingId = selectControl.value;
             if (!buildingId) {
-                this.mapImage.style.top = '-290px';
-                this.mapImage.style.left = '-80px';
-                this.mapImage.style.scale = '0.9';
-                this.mapView.setAttribute('src', '');
+                this._resetMap();
                 return;
             }
 
-            let building = buildingsData.filter((row) => {
-                return row.id === buildingId;
-            })[0];
-            this.mapImage.style.top = building.y + 'px';
-            this.mapImage.style.left = building.x + 'px';
-            this.mapImage.style.scale = building.scale;
+            let building = buildingsData.find((row) => row.id === buildingId);
+            if (!building) return;
+
+            this.mapImage.style.transform =
+                `translate(${building.x}px, ${building.y}px) scale(${building.scale})`;
             this.mapView.setAttribute('src', `./images/${buildingId}.jpeg`);
+            this.mapViewContainer.classList.add('has-image');
         });
     },
 };
-// export user object to make it available for other modules to use
+
 export default map;

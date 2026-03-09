@@ -4,124 +4,106 @@
             .week {
                 display: flex;
                 flex-direction: row;
+                border-radius: 8px;
+                overflow: hidden;
+                border: 1px solid var(--mason-border);
 
                 .time {
                     .time-title {
-                        background: var(--mason-section-accent2);
-                        padding: 5px;
+                        background: var(--mason-accent);
+                        color: #fff;
+                        padding: 8px;
+                        font-weight: 600;
+                        text-align: center;
+                        font-size: 0.7rem;
                     }
 
                     .time-event {
                         display: flex;
                         height: 40px;
-                        width: 100px;
+                        width: 90px;
                         align-items: center;
                         justify-content: center;
-                        background-color: var(--mason-section-accent2);
-                        border-top: 1px solid rgb(0, 0, 0);
-                        border-right: 1px solid rgb(0, 0, 0);
+                        background-color: var(--mason-card-header);
+                        border-top: 1px solid var(--mason-border);
+                        font-size: 0.7rem;
+                        color: var(--mason-text-secondary);
+                        font-weight: 500;
                     }
                 }
 
                 .day {
-                    border-right: 1px solid var(--mason-section-background1);
+                    border-right: 1px solid var(--mason-border);
                     flex: 1;
                     position: relative;
 
                     .day-title {
-                        background: var(--mason-section-accent2);
-                        border-right: none;
-                        padding: 5px;
+                        background: var(--mason-accent);
+                        color: #fff;
+                        padding: 8px;
+                        text-align: center;
+                        font-weight: 600;
+                        font-size: 0.75rem;
                     }
 
                     .day-events {
                         position: relative;
 
                         .day-event {
-                            background-color: var(--mason-section-light-purple);
+                            background-color: var(--mason-course-violet);
                             position: absolute;
-                            padding: 5px;
-                            left: 0px;
+                            padding: 4px 6px;
+                            left: 0;
                             width: 100%;
+                            font-size: 0.7rem;
+                            font-weight: 600;
+                            color: #fff;
+                            border-radius: 3px;
+                            cursor: pointer;
+                            transition: filter 0.15s ease;
+                            z-index: 2;
 
                             &:hover {
-                                cursor: pointer;
-                                
+                                filter: brightness(1.15);
+
                                 &:before {
                                     content: attr(start);
                                     position: absolute;
-                                    top: -12px;
+                                    top: -14px;
                                     right: 2px;
-                                    font-size: 60%;
-                                    width: 50px;
-                                    text-align: right;
-                                    color: var(--mason-section-head-text);
+                                    font-size: 0.55rem;
+                                    font-weight: 400;
+                                    color: var(--mason-text-secondary);
                                 }
                                 &:after {
                                     content: attr(end);
                                     position: absolute;
-                                    bottom: -12px;
+                                    bottom: -14px;
                                     right: 2px;
-                                    font-size: 60%;
-                                    width: 50px;
-                                    text-align: right;
-                                    color: var(--mason-section-head-text);
+                                    font-size: 0.55rem;
+                                    font-weight: 400;
+                                    color: var(--mason-text-secondary);
                                 }
                             }
-                            &.CS321-002 {
-                                background-color: var(
-                                    --mason-course-light-blue
-                                );
-                            }
-                            &.CS330-005 {
-                                background-color: var(
-                                    --mason-course-light-purple
-                                );
-                            }
-                            &.CS330-001 {
-                                background-color: var(--mason-course-dark-blue);
-                            }
-                            &.CS262-003 {
-                                background-color: var(
-                                    --mason-course-dark-purple
-                                );
-                            }
-                            &.CS306-001 {
-                                background-color: var(
-                                    --mason-course-light-pink
-                                );
-                            }
-                            &.CS367-004 {
-                                background-color: var(--mason-course-dark-pink);
-                            }
-                            &.CS471-001 {
-                                background-color: var(
-                                    --mason-course-light-orange
-                                );
-                            }
-                            &.CS367-003 {
-                                background-color: var(
-                                    --mason-course-dark-orange
-                                );
-                            }
-                            &.CS483-002 {
-                                background-color: var(
-                                    --mason-course-light-teal
-                                );
-                            }
-                            &.CS367-001 {
-                                background-color: var(
-                                    --mason-course-light-salmon
-                                );
-                            }
+
+                            &.CS321-002 { background-color: var(--mason-course-sky); }
+                            &.CS330-005 { background-color: var(--mason-course-violet); }
+                            &.CS330-001 { background-color: var(--mason-course-teal); }
+                            &.CS262-003 { background-color: var(--mason-course-indigo); }
+                            &.CS306-001 { background-color: var(--mason-course-pink); }
+                            &.CS367-004 { background-color: var(--mason-course-rose); }
+                            &.CS471-001 { background-color: var(--mason-course-amber); }
+                            &.CS367-003 { background-color: var(--mason-course-orange); }
+                            &.CS483-002 { background-color: var(--mason-course-cyan); }
+                            &.CS367-001 { background-color: var(--mason-course-emerald); }
                         }
                     }
 
-                    /* horizontal gridlines for each hour */
+                    /* horizontal gridlines */
                     &::before {
                         content: "";
                         position: absolute;
-                        top: -9px; /* aligning for each hour (i know, it's scuffed) */
+                        top: -9px;
                         left: 0;
                         right: 0;
                         height: 100%;
@@ -129,44 +111,11 @@
                             to bottom,
                             transparent,
                             transparent 39px,
-                            rgb(0, 0, 0) 39px,
-                            rgb(0, 0, 0) 40px
-                        ); /* Repeat every 40 pixels */
-                        pointer-events: none; /* allow clicks to go through */
+                            var(--mason-border) 39px,
+                            var(--mason-border) 40px
+                        );
+                        pointer-events: none;
                     }
-                }
-            }
-
-            dialog {
-                margin: auto;
-                width: 350px;
-                height: 300px;
-                border: none;
-                border-radius: 5px;
-                box-shadow: 0px 0px 3px #fff;
-                .dialog-main {
-                    height: 100%;
-                    display: flex;
-                    flex-direction: column;
-                    .dialog-header {
-                        padding: 10px;
-                        background-color: var(--mason-section-accent2);
-                        color: #fff;
-                    }
-                    .dialog-body {
-                        padding: 10px;
-                        flex: 1;
-                    }
-
-                    .dialog-footer {
-                        background-color: var(--mason-section-background2);
-                        padding: 10px;
-                    }
-                }
-
-                &::backdrop {
-                    background-color: var(--mason-section-accent2);
-                    opacity: 0.3;
                 }
             }
         }

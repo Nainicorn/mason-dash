@@ -1,18 +1,40 @@
 <header class="header">
   <div class="header-logo-title">
     <div class="header-logo"></div>
-    {{! <div class="header-title">Mason Dash</div> }}
+    <div class="header-title">Mason<span>Dash</span></div>
   </div>
   <div class="header-user"></div>
-  <div class="header-links">
-    <select class="select-theme">
-      <option value="default">Dark</option>
-      <option value="light">Light</option>
-      <option value="night">Night</option>
-      <option value="sea">Sea</option>
-      <option value="evil">Evil</option>
-    </select>
-    <button class="header-link" data-action="exit"></button>
+  <div class="header-actions">
+    <div class="theme-dropdown">
+      <button class="theme-dropdown-toggle">
+        <span class="theme-preview"></span>
+        <span class="theme-label">Mason</span>
+        <span class="theme-arrow">&#9662;</span>
+      </button>
+      <div class="theme-dropdown-menu">
+        <div class="theme-option" data-theme="default">
+          <span class="theme-swatch" style="background: #006633;"></span>
+          <span class="theme-option-label" style="color: #e8edf2;">Mason</span>
+        </div>
+        <div class="theme-option" data-theme="light">
+          <span class="theme-swatch" style="background: #ffffff;"></span>
+          <span class="theme-option-label" style="color: #ffffff;">Light</span>
+        </div>
+        <div class="theme-option" data-theme="night">
+          <span class="theme-swatch" style="background: #7c3aed;"></span>
+          <span class="theme-option-label" style="color: #e2dff0;">Night</span>
+        </div>
+        <div class="theme-option" data-theme="sea">
+          <span class="theme-swatch" style="background: #0ea5e9;"></span>
+          <span class="theme-option-label" style="color: #ccd6f6;">Ocean</span>
+        </div>
+        <div class="theme-option" data-theme="evil">
+          <span class="theme-swatch" style="background: #ef4444;"></span>
+          <span class="theme-option-label" style="color: #e5e5e5;">Dark</span>
+        </div>
+      </div>
+    </div>
+    <button class="header-link" data-action="exit" title="Sign Out"></button>
   </div>
 </header>
 <section class="section">
@@ -39,7 +61,7 @@
   </div>
   <div class="item map" data-type="map">
     <div class="item-header">
-      <div class="item-title">Map</div>
+      <div class="item-title">Campus Map</div>
       <div class="item-controls">
         <select></select>
       </div>
@@ -54,5 +76,5 @@
   </div>
 </section>
 <footer class="footer">
-  <p>&copy; 2024 Mason Dash</p>
+  <p>&copy; 2024 Mason Dash &mdash; George Mason University</p>
 </footer>

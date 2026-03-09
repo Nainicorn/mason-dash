@@ -14,9 +14,7 @@ const credits = {
         // select the DOM element with the class item info
         this.element = document.querySelector(".item.credits");
         // render the layout of the info component
-        this._renderLayout();
-        // load data async
-        await this._loadData();
+        await this._renderLayout();
     },
 
     // private method to render the layout of the info component
@@ -46,7 +44,6 @@ const credits = {
 
         // set the inner HTML of the selected element to the generated HTML
         this.element.querySelector(".item-body").innerHTML = mainHtml;
-        this.element.querySelector('.course').insertAdjacentHTML("beforeend", pillHtml);
     },
 
     // private method to load data asynchronously for the courses component
